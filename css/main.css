@@ -1,6 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    user-select: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: "Inter";
+}
+section {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  background: url("/img/mountains_1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+section::after {
+  content: "";
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: #00000092;
+}
+
+section .aside {
+  min-height: 100vh;
+  flex: 2;
+}
+section .main {
+  min-height: 100vh;
+  flex: 8;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+.main .clock {
+  flex: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.clock .color_box {
+  position: relative;
+  /* width: 400px; */
+  width: 70%;
+  height: 150px;
+  margin-bottom: 50px;
+}
+.clock .color_box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
+  border-radius: 20px;
+  animation: rotating 4s linear infinite;
+}
+.clock .color_box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
+  border-radius: 20px;
+  filter: blur(40px);
+  opacity: 0.75;
+  animation: rotating 4s linear infinite;
+}
+
+.clock .color_box .grey_box {
+  position: absolute;
+  inset: 4px;
+  background-image: linear-gradient(165deg, #28272f, #040404);
+  border-radius: 16px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.grey_box .numbers_bx {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.numbers {
+  font-size: 65px;
+  font-weight: 500;
+  background-image: linear-gradient(90deg, #eef1f1, #71757e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin: 10px;
+}
+
+.main .buttons {
+  flex: 1;
+}
+.main .stops {
+  flex: 2;
+}
+
+/*******************  Adaptation *******************/
+
+@media screen and (orientation: portrait) {
+  section .aside {
+    display: none;
+  }
+  .clock .color_box {
+    width: 70%;
+    height: 23%;
+  }
+}
+
+@media screen and (max-width: 1000px) and (orientation: landscape) {
+  .main .clock {
+    flex: 6;
+  }
+  .numbers {
+    font-size: 65px;
+  }
+}
+@media screen and (max-width: 750px) and (orientation: landscape) {
+  .numbers {
+    font-size: 55px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .numbers {
+    font-size: 40px;
+    margin: 5px;
+  }
+}
+
+/********************* Automation *******************/
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.rotating {
+  animation: rotating 4s linear infinite;
+}
+@keyframes rotating {
+  0% {
+    --a: 0deg;
+  }
+  100% {
+    --a: 360deg;
+  }
 }
