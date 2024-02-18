@@ -1,0 +1,1 @@
+Timer in javascript. Based on the design of the project https://www.figma.com/file/yLtazwRmndsBN52Mb04lbP/Countdown-timer-%7C-Design-League-(Community)?type=design&node-id=0%3A1&mode=design&t=758RsQUVTPwwXuJI-1
