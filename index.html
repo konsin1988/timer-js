@@ -14,19 +14,29 @@
       <div class="aside"></div>
       <div class="main">
         <div class="clock">
-          <div class="color_box">
+          <div class="color_box rotating">
             <div class="grey_box">
               <div class="numbers_bx">
-                <div id="hours" class="numbers">01</div>
-                <div class="numbers">:</div>
-                <div id="minutes" class="numbers">25</div>
-                <div class="numbers">:</div>
-                <div id="seconds" class="numbers">32</div>
+                <div id="hours" class="numbers clock_num">01</div>
+                <div class="numbers clock_num">:</div>
+                <div id="minutes" class="numbers clock_num">25</div>
+                <div class="numbers clock_num">:</div>
+                <div id="seconds" class="numbers clock_num">32</div>
               </div>
             </div>
           </div>
         </div>
-        <div class="buttons"></div>
+        <div class="buttons">
+          <div class="button hidden_btn">
+            <div id="reset" class="numbers">reset</div>
+          </div>
+          <div id="start" class="button start">
+            <div class="numbers">start</div>
+          </div>
+          <div id="step" class="button hidden_btn">
+            <div class="numbers">step</div>
+          </div>
+        </div>
         <div class="stops"></div>
       </div>
       <div class="aside"></div>
