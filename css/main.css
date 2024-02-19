@@ -17,7 +17,7 @@ section {
 section::before {
   content: "";
   inset: 0;
-  background: url("/img/mountains_1.jpg");
+  background-image: url("./img/mountains_1.jpg");
   position: fixed;
 
   background-size: cover;
