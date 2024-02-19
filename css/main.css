@@ -17,7 +17,7 @@ section {
 section::before {
   content: "";
   inset: 0;
-  background-image: url("./img/mountains_1.jpg");
+  background-image: url("../img/mountains_1.jpg");
   position: fixed;
 
   background-size: cover;
@@ -39,8 +39,6 @@ section .main {
   min-height: 100vh;
   flex: 8;
   z-index: 2;
-  /* display: block; */
-  /* flex-direction: column; */
 }
 
 /****************************** Clock ********************/
@@ -52,6 +50,7 @@ section .main {
   align-items: flex-end;
   justify-content: center;
   position: sticky;
+  z-index: 10;
 }
 .clock .color_box {
   position: relative;
@@ -127,6 +126,7 @@ section .main {
   justify-content: space-around;
   position: sticky;
   top: 300px;
+  z-index: 10;
 }
 .buttons .button {
   position: relative;
@@ -179,10 +179,15 @@ section .main {
 .buttons .start {
   align-self: flex-end;
   font-size: 50px;
+  z-index: 10;
 }
-/* .hidden_btn {
+.hidden_btn {
   visibility: hidden;
-} */
+  transition: all 0.3s;
+}
+.opacity_li {
+  opacity: 0;
+}
 
 /************************* Stops *********************/
 .main .stops {
@@ -198,9 +203,11 @@ section .main {
   list-style-type: none;
   font-size: 30px;
   text-align: justify;
+  z-index: 0;
 }
 .stops ul li {
   margin: 20px;
+  z-index: 0;
 }
 
 /*******************  Adaptation *******************/
