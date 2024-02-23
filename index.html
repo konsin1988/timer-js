@@ -8,38 +8,44 @@
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
     <link rel="stylesheet" href="./css/main.css" />
     <script src="./js/main.js" defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/device.js/0.2.7/device.min.js"
+      defer
+    ></script>
   </head>
   <body>
     <section>
       <div class="aside"></div>
       <div class="main">
-        <div class="clock">
-          <div class="color_box rotating">
-            <div class="grey_box">
-              <div class="numbers_bx">
-                <div id="hours" class="numbers clock_num">00</div>
-                <div class="numbers clock_num">:</div>
-                <div id="minutes" class="numbers clock_num">00</div>
-                <div class="numbers clock_num">:</div>
-                <div id="seconds" class="numbers clock_num">00</div>
+        <div class="static">
+          <div class="clock">
+            <div class="color_box rotating">
+              <div class="grey_box">
+                <div class="numbers_bx">
+                  <div id="hours" class="numbers clock_num">00</div>
+                  <div class="numbers clock_num">:</div>
+                  <div id="minutes" class="numbers clock_num">00</div>
+                  <div class="numbers clock_num">:</div>
+                  <div id="seconds" class="numbers clock_num">00</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="buttons">
-          <div id="reset" class="button hidden_btn">
-            <div class="numbers">reset</div>
-          </div>
-          <div class="button start">
-            <div id="start" class="numbers">start</div>
-          </div>
-          <div id="step" class="button hidden_btn">
-            <div class="numbers">step</div>
+          <div class="buttons">
+            <div id="reset" class="button hidden_btn">
+              <div class="numbers">reset</div>
+            </div>
+            <div id="one_button_set" class="button one_button">
+              <div id="start" class="numbers">start</div>
+            </div>
+            <div id="step" class="button hidden_btn">
+              <div class="numbers">step</div>
+            </div>
           </div>
         </div>
         <div class="stops">
           <ul id="list_steps">
-            <li>
+            <li class="list_elevent">
               <span class="numbers">1.</span>
               <span class="numbers">Full... </span>
               <span class="numbers">00:02:21 </span>

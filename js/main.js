@@ -5,12 +5,18 @@ const second = document.getElementById("seconds");
 const minute = document.getElementById("minutes");
 const hour = document.getElementById("hours");
 const listSteps = document.getElementById("list_steps");
+const setOneButton = document.getElementById("one_button_set");
 
 const steps = [];
 let timeId;
 let isRunning = false;
 let counter = 0;
 let counterPrev = 0;
+let startHidden =
+  document.querySelector(".stops").getBoundingClientRect().top + 50;
+let endHidden =
+  document.querySelector("body").getBoundingClientRect().bottom - 50;
+let sizeCounter = "body";
 
 /******************************  OBJECT GENERATOR ********/
 
@@ -56,6 +62,7 @@ start.onclick = function () {
       time.setClock();
     }, 1000);
     isRunning = true;
+    setOneButton.classList.remove("one_button");
   } else {
     clearInterval(timeId);
     start.textContent = "start";
@@ -74,10 +81,12 @@ step.onclick = function () {
   const newStep = {
     full: `${time.hour}:${time.minute}:${time.second}`,
     delta: `${timeDelta.hour}:${timeDelta.minute}:${timeDelta.second}`,
+    hidden: false,
   };
   steps.push(newStep);
 
   render(steps);
+  window.scroll(top);
 };
 
 /*********************** RESET ******************* */
@@ -93,14 +102,17 @@ reset.onclick = function () {
   time.setTime(counter);
   time.setClock();
   steps.length = 0;
+  setOneButton.classList.add("one_button");
   render(steps);
 };
 
 /*********************** GETTEMP ****************** */
 
-function getTemp(num, full, delta) {
-  return `<li data-index="${num}">
-              <span class="numbers">${num + 1}. </span>
+function getTemp(num, full, delta, hidden) {
+  return `<li data-index="${num}" class="list_elevent ${
+    hidden ? "opacity_li" : ""
+  } ">
+              <span class="numbers">${num + 1}) </span>
               <span class="numbers">Full... </span>
               <span class="numbers">${full}  </span>
               <span class="numbers">Delta... </span>
@@ -112,19 +124,57 @@ function getTemp(num, full, delta) {
 function render(array) {
   listSteps.innerHTML = "";
 
-  for (let i = 0; i < array.length; i++) {
+  for (let i = array.length - 1; i >= 0; i--) {
     listSteps.insertAdjacentHTML(
       "beforeend",
-      getTemp(i, array[i].full, array[i].delta)
+      getTemp(i, array[i].full, array[i].delta, array[i].hidden)
     );
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    testMapping(i);
   }
 }
 render(steps);
 
 /************************  STEPS OPACITY  *************/
 
+function testMapping(index) {
+  if (
+    document.querySelector(`[data-index="${index}"]`).getBoundingClientRect()
+      .bottom < startHidden ||
+    document.querySelector(`[data-index="${index}"]`).getBoundingClientRect()
+      .bottom > endHidden
+  ) {
+    document
+      .querySelector(`[data-index="${index}"]`)
+      .classList.add("opacity_li");
+    steps[index].hidden = true;
+  } else {
+    document
+      .querySelector(`[data-index="${index}"]`)
+      .classList.remove("opacity_li");
+    steps[index].hidden = false;
+  }
+}
+
 window.addEventListener("scroll", (e) => {
   for (let i = 0; i < steps.length; i++) {
-    console.log(document.querySelector(`[data-index="${i}"]`));
+    testMapping(i);
+  }
+});
+
+window.addEventListener("resize", function (steps) {
+  // window.scroll(top);
+  if (device.desktop()) {
+    endHidden =
+      document.querySelector("body").getBoundingClientRect().bottom - 50;
+  } else {
+    endHidden = window.screen.height - 50;
+  }
+  startHidden =
+    document.querySelector(".buttons").getBoundingClientRect().bottom + 100;
+  for (let i = 0; i < steps.length; i++) {
+    testMapping(i);
   }
 });
